@@ -1,0 +1,7 @@
+.tabelaSomas td {
+    border: 2px solid black;
+    transition: 1s ease-in-out;
+    text-align: center;
+    text-decoration-style: solid;
+    padding: 0.5em;
+}
