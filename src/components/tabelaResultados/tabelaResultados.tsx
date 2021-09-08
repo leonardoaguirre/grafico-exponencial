@@ -68,6 +68,18 @@ const TabelaResultados: React.FC<props> = (props) => {
                     </tr>
                 </tbody>
             </table>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Formula do gráfico</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Y = {results.alpha} * {results.beta}<sup>x</sup></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     )
 }
