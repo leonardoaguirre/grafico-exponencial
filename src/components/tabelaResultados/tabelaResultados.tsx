@@ -10,6 +10,7 @@ interface Somas {
 interface props {
     somas: Somas;
     n: number;
+    setY;
 }
 interface Resultados {
     D?: number;
@@ -22,6 +23,7 @@ interface Resultados {
 }
 const TabelaResultados: React.FC<props> = (props) => {
     const [results, setResults] = useState<Resultados>({})
+    const [y, setY] = useState<number>(0)
 
     useEffect(() => {
         //calcula delta, delta A e delta B e atribui a variavel
@@ -39,8 +41,16 @@ const TabelaResultados: React.FC<props> = (props) => {
         res.alpha = Math.pow(10, res.B)
 
         //atribui ao hook para ser exibido os resultados no componente
-        setResults(res)   
-    },[props])
+        setResults(res)
+    }, [props])
+
+    const calculaY = (x: number) => {
+        //Formula Y = Alpha * Beta^X
+        const res = (results.alpha) * Math.pow(results.beta,x) //Calcula o valor aproximado de Y
+
+        setY(res);//Atribui ao hook o valor aproximado de Y
+        props.setY({x : x, y : res})
+    }
 
     return (
         <div className={styles.tabelaResultados}>
@@ -77,6 +87,23 @@ const TabelaResultados: React.FC<props> = (props) => {
                 <tbody>
                     <tr>
                         <td>Y = {results.alpha} * {results.beta}<sup>x</sup></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Calculo valor aproximado de Y</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>X</td>
+                        <td>Y</td>
+                    </tr>
+                    <tr>
+                        <td><input onChange={(e) => calculaY(parseFloat(e.target.value))} type="number" /></td>
+                        <td>{y}</td>
                     </tr>
                 </tbody>
             </table>
