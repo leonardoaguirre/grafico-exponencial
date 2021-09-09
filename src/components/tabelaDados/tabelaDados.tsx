@@ -121,7 +121,6 @@ function TabelaDados() {
             {somas ? <TabelaSomas somas={somas} /> : ``}
             {somas ? <TabelaResultados somas={somas} n={n} setY={retornaYAproximado} /> : ``}
             {somas ? <Grafico valores={valores} Yaproximado={yAproximado} /> : ``}
-            {/* {console.log(yAproximado)} */}
         </div>
     )
 }

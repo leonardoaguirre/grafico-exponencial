@@ -49,7 +49,7 @@ const TabelaResultados: React.FC<props> = (props) => {
         const res = (results.alpha) * Math.pow(results.beta,x) //Calcula o valor aproximado de Y
 
         setY(res);//Atribui ao hook o valor aproximado de Y
-        props.setY({x : x, y : res})
+        props.setY({x : x, y : res})//Envia os valores calculados ao componente pai para exibicao no grafico
     }
 
     return (

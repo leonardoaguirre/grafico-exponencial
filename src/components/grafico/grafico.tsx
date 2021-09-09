@@ -16,26 +16,13 @@ interface props {
 
 const Grafico: React.FC<props> = (props) => {
 
-    // const converteDados = () => {
-    //     const dados: [{ x?: number, y?: number }] = [{}];
-    //     props.valores.x.forEach((x, i) => {
-    //         dados.push({ x: x[i], y: props.valores.y[i] })
-    //     })
-    //     return dados;
-    // }
-    useEffect(()=>{
-
-        // console.log(props.Yaproximado.y);
-        
-    },[props])
-
     return (
         <div>
             <Line
                 data={{
                     labels : props.valores.x,
-                    datasets: [
-                        {
+                    datasets: [// dados a serem representados graficamente
+                        {//dados da tabela a ser preenchida
                             label: 'y',
                             data: props.valores.y,
                             backgroundColor: 'white',
@@ -44,7 +31,7 @@ const Grafico: React.FC<props> = (props) => {
                             borderDash: [5, 5],
                             fill: false,
                         },
-                        {
+                        {//dados do calculo aproximado de y
                             label: 'y aproximado',
                             data: [props.Yaproximado],
                             backgroundColor: 'white',
@@ -55,17 +42,17 @@ const Grafico: React.FC<props> = (props) => {
                         },
                     ],
                 }}
-                height={500}
+                height={500}//taamanho do grafico em px
                 width={500}
                 options={{
-                    responsive: false,
+                    responsive: false,//responsividade do grafico
                     plugins: {
-                        title: {
+                        title: {//titulo do grafico
                             display: true,
                             text: 'Gráfico Exponencial'
                         },
                     },
-                    tension: 0.3,
+                    tension: 0.3,//tensao da linha
                     maintainAspectRatio: false,
                     scales: {
                         x:
@@ -74,7 +61,7 @@ const Grafico: React.FC<props> = (props) => {
                             grace: '10%',
                             ticks: {
                                 beginAtZero: true,
-                                stepSize: 1
+                                stepSize: 1 //intervalo de amostragem nos ticks do graafico
                             }
                         },
                         y:
@@ -83,7 +70,6 @@ const Grafico: React.FC<props> = (props) => {
                             grace: '10%',
                             ticks: {
                                 beginAtZero: true,
-                                // stepSize: 0.5
                             }
                         },
                     }
