@@ -1,4 +1,4 @@
-import chartjs, { Line } from 'react-chartjs-2'
+import  { Line } from 'react-chartjs-2'
 
 interface Valores {
     x: number[];
@@ -10,13 +10,13 @@ interface props {
 }
 const Grafico: React.FC<props> = (props) => {
 
-    const converteDados = () => {
-        const dados: [{ x?: number, y?: number }] = [{}];
-        props.valores.x.forEach((x, i) => {
-            dados.push({ x: x[i], y: props.valores.y[i] })
-        })
-        return dados;
-    }
+    // const converteDados = () => {
+    //     const dados: [{ x?: number, y?: number }] = [{}];
+    //     props.valores.x.forEach((x, i) => {
+    //         dados.push({ x: x[i], y: props.valores.y[i] })
+    //     })
+    //     return dados;
+    // }
 
     return (
         <div>

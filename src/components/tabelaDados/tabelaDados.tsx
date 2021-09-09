@@ -55,7 +55,7 @@ function TabelaDados() {
             const celY = linha.childNodes[1].childNodes.item(0) as HTMLInputElement;
 
             if (celX.value.length < 1 || celY.value.length < 1) {
-                throw "Todas as celulas devem ser preenchidas"
+                throw Error("Todas as celulas devem ser preenchidas")
             }
             vals.x.push(parseFloat(celX.value))
             vals.y.push(parseFloat(celY.value))
