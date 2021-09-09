@@ -93,7 +93,7 @@ const TabelaResultados: React.FC<props> = (props) => {
             <table>
                 <thead>
                     <tr>
-                        <td>Calculo valor aproximado de Y</td>
+                        <td colSpan={2}>Calculo valor aproximado de Y</td>
                     </tr>
                 </thead>
                 <tbody>
