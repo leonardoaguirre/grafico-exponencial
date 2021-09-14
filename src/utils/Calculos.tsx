@@ -38,7 +38,6 @@ export default class Calculos{
         res.beta = Math.pow(10, res.A)
         res.alpha = Math.pow(10, res.B)
 
-        console.log(res);
         return res;
     }
 
