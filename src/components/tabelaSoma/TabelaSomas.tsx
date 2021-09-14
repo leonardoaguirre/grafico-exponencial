@@ -25,10 +25,10 @@ const TabelaSomas : React.FC<props> = (props) => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{props.somas.Xi}</td>
-                        <td>{props.somas.logY}</td>
-                        <td>{props.somas.XiAoQuadrado}</td>
-                        <td>{props.somas.XiYi}</td>
+                        <td className="x">{props.somas.Xi}</td>
+                        <td className="y">{props.somas.logY}</td>
+                        <td className="x">{props.somas.XiAoQuadrado}</td>
+                        <td className="xy">{props.somas.XiYi}</td>
                     </tr>
                 </tbody>
             </table>

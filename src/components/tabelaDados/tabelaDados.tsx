@@ -87,7 +87,7 @@ function TabelaDados() {
     const geraLinhas = (num: number) => {
         let linhas = [] //inicializa o vetor
         for (let i = 0; i < num; i++) {//loop que atribui ao vetor o numero de linhas a serem geradas de acordo com o numero passado como parametro na funcao
-            linhas.push(<tr><td><input type="number" /></td><td><input type="number" /></td></tr>)
+            linhas.push(<tr><td><input type="number" className="x" /></td><td><input type="number" className="y" /></td></tr>)
         }
         return linhas//retorna o vetor com as linhas geradas
     }
@@ -104,26 +104,36 @@ function TabelaDados() {
 
     return (
         <div className="tabelaDados">
+            <h1>Método dos mínimos quadrados</h1>
+            <h2>Função Exponencial</h2>
 
-            <div className="tabela-x-y">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>X</th>
-                            <th>Y</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabela">
-                        {geraLinhas(4)/*gera as linhas iniciais da tabela */}
-                    </tbody>
-                </table>
+            <div className="tabela">
+                <div className="tabela-x-y">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th className="x">X</th>
+                                <th className="y">Y</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela">
+                            {geraLinhas(3)/*gera as linhas iniciais da tabela */}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className="botoes">
+                    <div>
+                        <button className="menos" onClick={() => removeLinha(document.getElementById('tabela') as HTMLTableElement)}><p>-</p></button>
+                        <button className="mais" onClick={() => adicionaLinha(document.getElementById('tabela') as HTMLTableElement)}><p>+</p></button>
+                    </div>
+                    <div>
+                        <button className="calc" onClick={() => calcular(document.getElementById('tabela') as HTMLTableElement)}><p>Calcular</p></button>
+                    </div>
+                </div>
             </div>
 
-            <div className="botoes">
-                <button onClick={() => removeLinha(document.getElementById('tabela') as HTMLTableElement)}>-</button>
-                <button onClick={() => adicionaLinha(document.getElementById('tabela') as HTMLTableElement)}>+</button>
-                <button onClick={() => calcular(document.getElementById('tabela') as HTMLTableElement)}>Calcular</button>
-            </div>
+
             {reload ? <TabelaSomas somas={somas} /> : ``}
             {reload ? <TabelaResultados somas={somas} n={n} setY={retornaYAproximado} valores={valores} setLinhaTendencia={retornaLinhaTendencia} setResults={retornaResults} /> : ``}
             {linhaTendencia ? <Grafico valores={valores} Yaproximado={yAproximado} linhaTendencia={linhaTendencia} resultados={resultados}/> : ``}
