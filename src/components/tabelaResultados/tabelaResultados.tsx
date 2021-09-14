@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
+import Calculos from '../../utils/Calculos';
 import styles from '../tabelaResultados/tabelaResultados.module.css'
 
+interface Valores {
+    x: number[];
+    y: number[];
+}
 interface Somas {
     Xi: number;
     logY: number;
@@ -11,6 +16,9 @@ interface props {
     somas: Somas;
     n: number;
     setY;
+    setLinhaTendencia;
+    setResults;
+    valores : Valores;
 }
 interface Resultados {
     D?: number;
@@ -23,33 +31,23 @@ interface Resultados {
 }
 const TabelaResultados: React.FC<props> = (props) => {
     const [results, setResults] = useState<Resultados>({})
-    const [y, setY] = useState<number>(0)
+    const [y, setY] = useState<number>(5)
 
     useEffect(() => {
-        //calcula delta, delta A e delta B e atribui a variavel
-        let res: Resultados = {
-            D: props.somas.XiAoQuadrado * props.n - props.somas.Xi * props.somas.Xi,
-            Da: props.somas.XiYi * props.n - props.somas.Xi * props.somas.logY,
-            Db: props.somas.XiAoQuadrado * props.somas.logY - props.somas.Xi * props.somas.XiYi,
-        }
-        //calcula A e B e atrinui a variavel
-        res.A = res.Da / res.D
-        res.B = res.Db / res.D
+        const res = Calculos.calculaResultados(props)//calcula os resultados
+        setResults(res)//atribui ao hook para ser exibido os resultados no componente
 
-        //calcula beta e alpha e atrinuia variavel
-        res.beta = Math.pow(10, res.A)
-        res.alpha = Math.pow(10, res.B)
-
-        //atribui ao hook para ser exibido os resultados no componente
-        setResults(res)
-    }, [props])
-
+        props.setResults(res)
+        props.setLinhaTendencia(Calculos.calcLinhaTendencia(props,res))//calcula e atribui ao hook a linha de tendencia e envia ao grafico para exibicao
+    },[])
+    
     const calculaY = (x: number) => {
-        //Formula Y = Alpha * Beta^X
-        const res = (results.alpha) * Math.pow(results.beta,x) //Calcula o valor aproximado de Y
+        const res = Calculos.calculaYAproximado(x,results)//calcula o Y aproximado
 
         setY(res);//Atribui ao hook o valor aproximado de Y
         props.setY({x : x, y : res})//Envia os valores calculados ao componente pai para exibicao no grafico
+
+        props.setLinhaTendencia(Calculos.calcLinhaTendencia(props,results))//calcula e atribui ao hook a linha de tendencia e envia ao grafico para exibicao
     }
 
     return (

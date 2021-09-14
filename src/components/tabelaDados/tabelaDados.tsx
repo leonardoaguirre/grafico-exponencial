@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Calculos from '../../utils/Calculos';
 import Grafico from '../grafico/grafico';
 import TabelaResultados from '../tabelaResultados/tabelaResultados';
 import TabelaSomas from '../tabelaSoma/TabelaSomas';
@@ -17,12 +18,24 @@ interface yAproximado {
     x?: number;
     y?: number;
 }
+interface Resultados {
+    D?: number;
+    Da?: number;
+    Db?: number;
+    A?: number;
+    B?: number;
+    beta?: number;
+    alpha?: number;
+}
 
 function TabelaDados() {
     const [somas, setSomas] = useState<Somas>()
     const [valores, setValores] = useState<Valores>()
+    const [resultados, setResultados] = useState<Resultados>()
+    const [linhaTendencia, setLinhaTendencia] = useState<yAproximado[]>()
     const [n, setN] = useState<number>()
     const [yAproximado, setYAproximado] = useState<yAproximado>({ x: 0, y: 0 })
+    const [reload,isReload] = useState<boolean>(false)
 
     const removeLinha = async (table: HTMLTableElement) => {
         if (table.rows.length <= 2) { //verifica se a tabela de dados possuem mais de duas linhas
@@ -32,7 +45,6 @@ function TabelaDados() {
         }
     }
 
-
     const adicionaLinha = async (table: HTMLTableElement) => {
         var linha = table.insertRow()//insere uma linha na tabela
         linha.insertCell().innerHTML = `<input type="number" />`//adiciona uma celula na tabela com um elemento HTML de input do tipo number
@@ -41,12 +53,14 @@ function TabelaDados() {
 
     const calcular = async (table: HTMLTableElement) => {
         try {
+            isReload(false)
             const val: Valores = await capturaValores(table)//Captura os valores presentes na tabela
-
+            
             setValores(val);//atribui os valores da tabela ao hook
-            setSomas(await calculaSomas(val));//calcula as somas e atribui ao hook
+            setSomas(Calculos.calculaSomas(val));//calcula as somas e atribui ao hook
             setN(val.x.length)//atribui n ao hook de acordo com o tamanho do vetor capturado da tabela
 
+            isReload(true)
         } catch (error) {
             alert(error);//mostra um erro em um alert caso ocorra um
         }
@@ -69,20 +83,6 @@ function TabelaDados() {
         return vals;//retorna os valores da tabela de dados
     }
 
-    const calculaSomas = async (valores: Valores) => {
-        let somaXi: number = 0, somaLogY: number = 0, somaX2: number = 0, somaXiYi: number = 0;//inicializa todas as variaveis
-
-        for (const xi of valores.x) {//loop que percorre o vetor com todos os valores de x
-            somaXi += xi //calcula a soma de Xi
-            somaX2 += Math.pow(xi, 2) // calcula a soma de X ao quadrado
-        }
-        for (let i = 0; i < valores.y.length; i++) {//loop que percorre o vetor com todos os valores de y
-            somaLogY += Math.log10(valores.y[i])//calcula a soma de Log de Y
-            somaXiYi += valores.x[i] * (Math.log10(valores.y[i]))//calcula a soma de Xi * Yi
-        }
-        const somas: Somas = ({ Xi: somaXi, logY: somaLogY, XiAoQuadrado: somaX2, XiYi: somaXiYi });//atribui as somas calculadas ao objeto de somas
-        return somas;//retorna as somas calculadas
-    }
 
     const geraLinhas = (num: number) => {
         let linhas = [] //inicializa o vetor
@@ -94,6 +94,12 @@ function TabelaDados() {
 
     const retornaYAproximado = (xey) => {
         setYAproximado(xey)
+    }
+    const retornaLinhaTendencia = (linhaT) => {
+        setLinhaTendencia(linhaT)
+    }
+    const retornaResults = (res) =>{
+        setResultados(res)
     }
 
     return (
@@ -108,7 +114,7 @@ function TabelaDados() {
                         </tr>
                     </thead>
                     <tbody id="tabela">
-                        {geraLinhas(3)/*gera as linhas iniciais da tabela */}
+                        {geraLinhas(4)/*gera as linhas iniciais da tabela */}
                     </tbody>
                 </table>
             </div>
@@ -118,9 +124,9 @@ function TabelaDados() {
                 <button onClick={() => adicionaLinha(document.getElementById('tabela') as HTMLTableElement)}>+</button>
                 <button onClick={() => calcular(document.getElementById('tabela') as HTMLTableElement)}>Calcular</button>
             </div>
-            {somas ? <TabelaSomas somas={somas} /> : ``}
-            {somas ? <TabelaResultados somas={somas} n={n} setY={retornaYAproximado} /> : ``}
-            {somas ? <Grafico valores={valores} Yaproximado={yAproximado} /> : ``}
+            {reload ? <TabelaSomas somas={somas} /> : ``}
+            {reload ? <TabelaResultados somas={somas} n={n} setY={retornaYAproximado} valores={valores} setLinhaTendencia={retornaLinhaTendencia} setResults={retornaResults} /> : ``}
+            {linhaTendencia ? <Grafico valores={valores} Yaproximado={yAproximado} linhaTendencia={linhaTendencia} resultados={resultados}/> : ``}
         </div>
     )
 }
