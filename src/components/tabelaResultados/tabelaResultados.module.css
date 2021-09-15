@@ -1,7 +1,55 @@
-.tabelaResultados td {
-    border: 2px solid black;
+.tabelaResultados table {
+    border-collapse:collapse;
+    margin: 48px auto;
+}
+
+.tabelaResultados td,
+.tabelaResultados th {
     transition: 1s ease-in-out;
     text-align: center;
     text-decoration-style: solid;
-    padding: 0.5em;
+    padding: 0.6em;
+    background-color: white;
+    font-weight: 600;
+}
+
+.tabelaResultados th {
+    color: white;
+    font-weight: 700;
+}
+
+#primeiraTabela th {
+    background-color: rgb(39, 171, 145);
+}
+
+#primeiraTabela td,
+#primeiraTabela th {
+    border: 2px solid rgb(14, 111, 81);
+}
+
+#segundaTabela th {
+    background-color: rgb(95, 34, 218);
+}
+
+#segundaTabela td,
+#segundaTabela th {
+    border: 2px solid rgb(18, 13, 161);
+}
+
+#segundaTabela td {
+    color: rgb(20, 75, 170);
+}
+
+#terceiraTabela {
+    width: 100%;
+}
+
+#terceiraTabela th {
+    background-color: rgb(253, 37, 113);
+    width: 150px;
+}
+
+#terceiraTabela td,
+#terceiraTabela th {
+    border: 2px solid rgb(245, 103, 153);
 }

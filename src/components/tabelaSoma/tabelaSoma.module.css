@@ -1,16 +1,13 @@
-.tabelaSomas {
-}
-
 .tabelaSomas table {
     border-collapse:collapse;
     background-color: white;
-    margin: 48px;
+    margin: 48px 0 0 0;
 }
 
 .tabelaSomas thead {
     background-color: rgb(201, 53, 241);
     color: white;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .tabelaSomas td {

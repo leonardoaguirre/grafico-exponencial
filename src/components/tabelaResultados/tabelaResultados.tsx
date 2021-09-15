@@ -39,7 +39,8 @@ const TabelaResultados: React.FC<props> = (props) => {
 
         props.setResults(res)
         props.setLinhaTendencia(Calculos.calcLinhaTendencia(props,res))//calcula e atribui ao hook a linha de tendencia e envia ao grafico para exibicao
-    },[])
+        // eslint-disable-next-line
+    }, [])
     
     const calculaY = (x: number) => {
         const res = Calculos.calculaYAproximado(x,results)//calcula o Y aproximado
@@ -52,34 +53,42 @@ const TabelaResultados: React.FC<props> = (props) => {
 
     return (
         <div className={styles.tabelaResultados}>
-            <table>
-                <thead>
-                    <tr>
-                        <td>∆</td>
-                        <td>∆a</td>
-                        <td>∆b</td>
-                        <td>A</td>
-                        <td>B</td>
-                        <td>β</td>
-                        <td>α</td>
-                    </tr>
-                </thead>
+            <table id={styles.primeiraTabela}>
                 <tbody>
                     <tr>
-                        <td>{results.D}</td>
-                        <td>{results.Da}</td>
-                        <td>{results.Db}</td>
-                        <td>{results.A}</td>
-                        <td>{results.B}</td>
-                        <td>{results.beta}</td>
-                        <td>{results.alpha}</td>
+                        <th>∆</th>
+                        <td className="delta">{results.D}</td>
+                    </tr>
+                    <tr>
+                        <th>∆a</th>
+                        <td className="deltaA">{results.Da}</td>
+                    </tr>
+                    <tr>
+                        <th>∆b</th>
+                        <td className="deltaB">{results.Db}</td>
+                    </tr>
+                    <tr>
+                        <th>A</th>
+                        <td className="A">{results.A}</td>
+                    </tr>
+                    <tr>
+                        <th>B</th>
+                        <td className="B">{results.B}</td>
+                    </tr>
+                    <tr>
+                        <th>β</th>
+                        <td className="beta">{results.beta}</td>
+                    </tr>
+                    <tr>
+                        <th>α</th>
+                        <td className="alfa">{results.alpha}</td>
                     </tr>
                 </tbody>
             </table>
-            <table>
+            <table id={styles.segundaTabela}>
                 <thead>
                     <tr>
-                        <td>Formula do gráfico</td>
+                        <th>Formula do gráfico</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,20 +97,20 @@ const TabelaResultados: React.FC<props> = (props) => {
                     </tr>
                 </tbody>
             </table>
-            <table>
+            <table id={styles.terceiraTabela}>
                 <thead>
                     <tr>
-                        <td colSpan={2}>Calculo valor aproximado de Y</td>
+                        <th colSpan={2}>Calculo valor aproximado de Y</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>X</td>
-                        <td>Y</td>
+                        <th>X</th>
+                        <th>Y</th>
                     </tr>
                     <tr>
-                        <td><input onChange={(e) => calculaY(parseFloat(e.target.value))} type="number" /></td>
-                        <td>{y}</td>
+                        <td className={styles.inputX}><input className="x" onChange={(e) => calculaY(parseFloat(e.target.value))} type="number" /></td>
+                        <td className="y">{isNaN(y) ? '???' : y}</td>
                     </tr>
                 </tbody>
             </table>

@@ -134,9 +134,11 @@ function TabelaDados() {
             </div>
 
 
-            {reload ? <TabelaSomas somas={somas} /> : ``}
-            {reload ? <TabelaResultados somas={somas} n={n} setY={retornaYAproximado} valores={valores} setLinhaTendencia={retornaLinhaTendencia} setResults={retornaResults} /> : ``}
-            {linhaTendencia ? <Grafico valores={valores} Yaproximado={yAproximado} linhaTendencia={linhaTendencia} resultados={resultados}/> : ``}
+            <div className="resultados">
+                {reload ? <TabelaSomas somas={somas} /> : ``}
+                {reload ? <TabelaResultados somas={somas} n={n} setY={retornaYAproximado} valores={valores} setLinhaTendencia={retornaLinhaTendencia} setResults={retornaResults} /> : ``}
+                {linhaTendencia ? <Grafico valores={valores} Yaproximado={yAproximado} linhaTendencia={linhaTendencia} resultados={resultados}/> : ``}
+            </div>
         </div>
     )
 }

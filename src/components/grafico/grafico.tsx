@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2'
 import Calculos from '../../utils/Calculos';
 
+import styles from './styles.module.css';
+
 interface Valores {
     x?: number[];
     y?: number[];
@@ -34,7 +36,7 @@ const Grafico: React.FC<props> = (props) => {
     },[props])
 
     return (
-        <div>
+        <div className={styles.grafico}>
             <Line
                 data={{
                     labels: props.valores.x,
