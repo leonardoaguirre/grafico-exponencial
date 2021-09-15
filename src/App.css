@@ -1,199 +1,210 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 body {
-  background-color: rgb(253, 244, 232);
+    background-color: rgb(253, 244, 232);
 }
 
 p {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .x {
-  color: chocolate;
+    color: chocolate;
 }
 
 .y {
-  color: blueviolet;
+    color: blueviolet;
 }
 
 .xy {
-  color: rgb(255, 73, 143);
+    color: rgb(255, 73, 143);
 }
 
 .alfa {
-  color: darkcyan;
+    color: darkcyan;
 }
 
 .beta {
-  color: darkgreen;
+    color: darkgreen;
 }
 
 .delta {
-  color: darkslateblue;
+    color: darkslateblue;
 }
 
 .deltaA {
-  color: goldenrod;
+    color: goldenrod;
 }
 
 .deltaB {
-  color: orangered;
+    color: orangered;
 }
 
 .A {
-  color: sienna;
+    color: sienna;
 }
 
 .B {
-  color: royalblue;
+    color: royalblue;
 }
 
 .tabelaDados {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .tabelaDados h1 {
-  margin: 24px 0 12px 0;
+    margin: 24px 0 12px 0;
 }
 
 .tabelaDados h2 {
-  margin: 0 0 24px 0;
+    margin: 0 0 24px 0;
 }
 
 .tabela {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 36px;
-  position: relative;
-  right: -60px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 36px;
+    position: relative;
+    right: -60px;
 }
 
 input[type=number] {
-  text-align: right;
-  width: 128px;
-  border: 1px solid rgb(230, 230, 230);
-  padding: 4px 12px;
+    text-align: right;
+    width: 128px;
+    border: 1px solid rgb(230, 230, 230);
+    padding: 4px 12px;
 }
 
-input[type=number]::-webkit-inner-spin-button { 
-  -webkit-appearance: none;
-  
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
-input[type=number] { 
- -moz-appearance: textfield;
- appearance: textfield;
 
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .botoes {
-  display: flex;
-  flex-direction: row;
-
-  height: fit-content;
-  
-  position: relative;
-  right: -36px;
-  bottom: -20px;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    position: relative;
+    right: -36px;
+    bottom: -20px;
 }
 
-.botoes > div:first-child {
-  display: flex;
-  flex-direction: column;
+.botoes>div:first-child {
+    display: flex;
+    flex-direction: column;
 }
 
-.botoes > div:last-child {
-  margin-left: 16px;
+.botoes>div:last-child {
+    margin-left: 16px;
 }
 
-.menos, .mais {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.menos,
+.mais {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 button:hover {
-  opacity: 0.7;
-  transition: 0.2s;
+    opacity: 0.7;
+    transition: 0.2s;
 }
 
 .menos {
-  background-color: rgb(209, 92, 92);
-  color: white;
-  font-size: 36px;
+    background-color: rgb(209, 92, 92);
+    color: white;
+    font-size: 36px;
 }
 
 .menos p {
-  position: relative;
-  top: -2px;
+    position: relative;
+    top: -2px;
 }
 
 .mais {
-  margin-top: 4px;
-  background-color: rgb(23, 146, 23);
-  color: white;
-  font-size: 24px;
+    margin-top: 4px;
+    background-color: rgb(23, 146, 23);
+    color: white;
+    font-size: 24px;
 }
 
 .calc {
-  background-color: rgb(70, 76, 255);
-  border: none;
-  border-radius: 20px;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  width: 95px;
-  height: 100%;
+    background-color: rgb(70, 76, 255);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    width: 95px;
+    height: 100%;
 }
 
 .resultados {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.resultados table {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.01;
+    }
+    to {
+        opacity: 1;
+    }
 }

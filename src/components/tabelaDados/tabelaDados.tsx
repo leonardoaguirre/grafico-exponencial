@@ -47,8 +47,8 @@ function TabelaDados() {
 
     const adicionaLinha = async (table: HTMLTableElement) => {
         var linha = table.insertRow()//insere uma linha na tabela
-        linha.insertCell().innerHTML = `<input type="number" />`//adiciona uma celula na tabela com um elemento HTML de input do tipo number
-        linha.insertCell().innerHTML = `<input type="number" />`//adiciona uma celula na tabela com um elemento HTML de input do tipo number
+        linha.insertCell().innerHTML = `<input type="number" class='x'/>`//adiciona uma celula na tabela com um elemento HTML de input do tipo number
+        linha.insertCell().innerHTML = `<input type="number" class='y'/>`//adiciona uma celula na tabela com um elemento HTML de input do tipo number
     }
 
     const calcular = async (table: HTMLTableElement) => {
